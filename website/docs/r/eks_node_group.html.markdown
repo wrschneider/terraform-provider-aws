@@ -128,10 +128,19 @@ The following arguments are optional:
 * `force_update_version` - (Optional) Force version update if existing pods are unable to be drained due to a pod disruption budget issue.
 * `instance_types` - (Optional) Set of instance types associated with the EKS Node Group. Defaults to `["t3.medium"]`. Terraform will only perform drift detection if a configuration value is provided. Currently, the EKS API only accepts a single value in the set.
 * `labels` - (Optional) Key-value map of Kubernetes labels. Only labels that are applied with the EKS API are managed by this argument. Other Kubernetes labels applied to the EKS Node Group will not be managed.
+* `launch_template` - (Optional) Configuration block with Launch Template settings. Detailed below.
 * `release_version` – (Optional) AMI version of the EKS Node Group. Defaults to latest version for Kubernetes version.
 * `remote_access` - (Optional) Configuration block with remote access settings. Detailed below.
 * `tags` - (Optional) Key-value map of resource tags.
 * `version` – (Optional) Kubernetes version. Defaults to EKS Cluster Kubernetes version. Terraform will only perform drift detection if a configuration value is provided.
+
+### launch_template Configuration Block
+
+~> **NOTE:** Either `id` or `name` must be specified.
+
+* `id` - (Optional) Identifier of the EC2 Launch Template. Conflicts with `name`.
+* `name` - (Optional) Name of the EC2 Launch Template. Conflicts with `id`.
+* `version` - (Optional) Template version. Can be a version number, `$Latest`, or `$Default`. (Default: `$Default`).
 
 ### remote_access Configuration Block
 
